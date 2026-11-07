@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  body {
+    background-color: #070a12;
+    color: #e2e8f0;
+    font-family: 'Chakra Petch', 'Noto Serif TC', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+/* CRT Scanline & Phosphor Overlay */
+.crt-overlay::before {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+  z-index: 99;
+  background-size: 100% 3px, 6px 100%;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.crt-vignette::after {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0; left: 0; bottom: 0; right: 0;
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.85), inset 0 0 40px rgba(0, 240, 255, 0.08);
+  pointer-events: none;
+  z-index: 98;
+}
+
+/* Glowing Neon Text & Borders */
+.glow-cyan {
+  text-shadow: 0 0 10px rgba(6, 182, 212, 0.7), 0 0 20px rgba(6, 182, 212, 0.4);
+}
+
+.glow-amber {
+  text-shadow: 0 0 10px rgba(245, 158, 11, 0.7), 0 0 20px rgba(245, 158, 11, 0.4);
+}
+
+.glow-crimson {
+  text-shadow: 0 0 10px rgba(239, 68, 68, 0.7), 0 0 20px rgba(239, 68, 68, 0.4);
+}
+
+.glow-emerald {
+  text-shadow: 0 0 10px rgba(16, 185, 129, 0.7), 0 0 20px rgba(16, 185, 129, 0.4);
+}
+
+/* Terminal & Cyber Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0b1120;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Pulse animation for Ley Lines */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.35; filter: drop-shadow(0 0 2px #06b6d4); }
+  50% { opacity: 0.95; filter: drop-shadow(0 0 8px #06b6d4); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s infinite ease-in-out;
+}
+
+/* CRT Screen Turn-on flash animation */
+@keyframes crt-flicker {
+  0% { opacity: 0.97; }
+  50% { opacity: 1; }
+  52% { opacity: 0.94; }
+  54% { opacity: 1; }
+  80% { opacity: 0.98; }
+  100% { opacity: 1; }
+}
+
+.crt-active {
+  animation: crt-flicker 0.15s infinite;
+}
+
+/* Critical Low HP (< 30) Red Flashing Vignette */
+@keyframes critical-hp-pulse {
+  0% {
+    box-shadow: inset 0 0 50px rgba(239, 68, 68, 0.25), inset 0 0 20px rgba(220, 38, 38, 0.35);
+    background-color: rgba(239, 68, 68, 0.02);
+  }
+  50% {
+    box-shadow: inset 0 0 130px rgba(239, 68, 68, 0.75), inset 0 0 55px rgba(185, 28, 28, 0.9);
+    background-color: rgba(239, 68, 68, 0.09);
+  }
+  100% {
+    box-shadow: inset 0 0 50px rgba(239, 68, 68, 0.25), inset 0 0 20px rgba(220, 38, 38, 0.35);
+    background-color: rgba(239, 68, 68, 0.02);
+  }
+}
+
+.critical-hp-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 96;
+  animation: critical-hp-pulse 1.1s infinite ease-in-out;
+}
+
+/* Sanity Glitch Animation (< 30 SAN) */
+@keyframes text-glitch-jitter {
+  0% { transform: translate(0, 0); text-shadow: -1px 0 #a855f7, 1px 0 #06b6d4; }
+  25% { transform: translate(-1px, 0.5px); text-shadow: 1px 0 #ec4899, -1px 0 #3b82f6; }
+  50% { transform: translate(1px, -0.5px); text-shadow: -1.5px 0 #a855f7, 1.5px 0 #06b6d4; }
+  75% { transform: translate(-0.5px, -1px); text-shadow: 1px 0 #ec4899, -1px 0 #3b82f6; }
+  100% { transform: translate(0, 0); text-shadow: -1px 0 #a855f7, 1px 0 #06b6d4; }
+}
+
+.san-glitch-active {
+  animation: text-glitch-jitter 0.1s infinite;
+}

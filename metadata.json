@@ -1,0 +1,6 @@
+{
+  "name": "台灣異聞錄：島嶼漫遊者",
+  "description": "以台灣在地都市怪談為背景的文字冒險與網頁 TRPG 遊戲。化身島嶼漫遊者，穿梭於全台 22 縣市與靈能地脈之間，擲出 D20 骰子揭開古老謎團。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
